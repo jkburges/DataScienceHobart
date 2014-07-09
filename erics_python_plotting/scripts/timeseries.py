@@ -36,7 +36,9 @@ for i in range(len(lon)):
     plt.plot(time, T_CTRL[:,i], 'k-')
     plt.plot(time, T_A1B[:,i], 'r-')
     plt.ylabel(r'Temperature [$^\circ$C]')
-    plt.title(str(np.round(lon[i]).astype(int))+r'$^\circ$E '+str(np.round(-lat[i]).astype(int))+r'$^\circ$S')
+
+    formattedCoords = str(np.round(lon[i]).astype(int))+r'$^\circ$E '+str(np.round(-lat[i]).astype(int))+r'$^\circ$S'
+    plt.title(formattedCoords)
     plt.grid()
     if i<len(lon)-1:
         locs, labels = plt.xticks()
