@@ -35,9 +35,12 @@ def remove_xtick_labels():
     locs, labels = plt.xticks()
     plt.xticks(locs, [])
 
+def num_locations():
+    return len(lon)
+
 def plot_four_temperature_time_series():
     plt.figure() # Four time series, as a 4x1 subplot matrix
-    for i in range(len(lon)):
+    for i in range(num_locations()):
         plt.subplot(4,1,i+1)
         plt.plot(time, T_CTRL[:,i], 'k-')
         plt.plot(time, T_A1B[:,i], 'r-')
