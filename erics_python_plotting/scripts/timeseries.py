@@ -19,15 +19,16 @@ lat = data['lat']
 T_CTRL = data['T_CTRL']
 T_A1B = data['T_A1B']
 
-# Plot time series
-#plt.figure() # One time series
-plt.figure(figsize=(14,6)) # One time series
-plt.plot(time, T_CTRL[:,1], 'k-')
-plt.plot(time, T_A1B[:,1], 'r-')
-plt.ylabel(r'Temperature [$^\circ$C]')
-plt.xlabel('time [years]')
-plt.grid()
-plt.savefig('temp_ts_single.png')
+def plot_time_series():
+    plt.figure(figsize=(14,6)) # One time series
+    plt.plot(time, T_CTRL[:,1], 'k-')
+    plt.plot(time, T_A1B[:,1], 'r-')
+    plt.ylabel(r'Temperature [$^\circ$C]')
+    plt.xlabel('time [years]')
+    plt.grid()
+    plt.savefig('temp_ts_single.png')
+
+plot_time_series()
 
 plt.figure() # Four time series, as a 4x1 subplot matrix
 for i in range(len(lon)):
