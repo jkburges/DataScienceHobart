@@ -28,6 +28,13 @@ def plot_single_temperature_time_series():
     plt.grid()
     plt.savefig('temp_ts_single.png')
 
+def is_bottom_subplot(i):
+    return i == len(lon) - 1
+
+def remove_xtick_labels():
+    locs, labels = plt.xticks()
+    plt.xticks(locs, [])
+
 def plot_four_temperature_time_series():
     plt.figure() # Four time series, as a 4x1 subplot matrix
     for i in range(len(lon)):
@@ -35,13 +42,13 @@ def plot_four_temperature_time_series():
         plt.plot(time, T_CTRL[:,i], 'k-')
         plt.plot(time, T_A1B[:,i], 'r-')
         plt.ylabel(r'Temperature [$^\circ$C]')
+        plt.grid()
 
         formattedCoords = str(np.round(lon[i]).astype(int))+r'$^\circ$E '+str(np.round(-lat[i]).astype(int))+r'$^\circ$S'
         plt.title(formattedCoords)
-        plt.grid()
-        if i<len(lon)-1:
-            locs, labels = plt.xticks()
-            plt.xticks(locs, [])
+
+        if not is_bottom_subplot(i):
+            remove_xtick_labels()
         else:
             plt.xlabel('time [years]')
 
@@ -55,7 +62,7 @@ def simple_histogram():
 
     plt.savefig('histogram.png')
 
-def example_pdfs_using_kernel_density_function():
+def pdfs_using_kernel_density_function():
     T = np.arange(10,25,0.01) # Define range over which to calculate pdf
     kernel = sp.stats.gaussian_kde(T_CTRL[:,1])
     T_CTRL_pdf = kernel.evaluate(T)
@@ -92,4 +99,4 @@ load_data()
 plot_single_temperature_time_series()
 plot_four_temperature_time_series()
 simple_histogram()
-example_pdfs_using_kernel_density_function()
+pdfs_using_kernel_density_function()
