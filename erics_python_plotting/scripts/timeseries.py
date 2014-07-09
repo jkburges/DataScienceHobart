@@ -47,10 +47,10 @@ def plot_four_temperature_time_series():
         formattedCoords = str(np.round(lon[i]).astype(int))+r'$^\circ$E '+str(np.round(-lat[i]).astype(int))+r'$^\circ$S'
         plt.title(formattedCoords)
 
-        if not is_bottom_subplot(i):
-            remove_xtick_labels()
-        else:
+        if is_bottom_subplot(i):
             plt.xlabel('time [years]')
+        else:
+            remove_xtick_labels()
 
     plt.savefig('temp_ts_four.png')
 
